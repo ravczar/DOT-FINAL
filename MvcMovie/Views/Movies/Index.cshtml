@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MvcMovie.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+<h2 class="text-danger">Search by:</h2>
+@using (Html.BeginForm("Index", "Movies", FormMethod.Get))
+{
+    <div>
+        Genre: @Html.DropDownList("movieGenre", "All")
+        <p class="input-group text-danger">Title: @Html.TextBox("SearchString")</p>
+        <input class="btn btn-success float-left" type="submit" value="Filter" />
+        <input class="btn btn-warning" type="reset" value="Reset" />
+    </div>
+    }
+
+     
+    
+    <h2 class="text-danger">Movie table:</h2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                Manipulate Data
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleaseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+        }
+
+    </table>
+    <button class="btn btn-light display-3">@Html.ActionLink("Add new movie", "Create")</button>
