@@ -53,11 +53,13 @@
     </dl>
 </div>
 
-<p>Actualy played in cinema:</p>
+<p class="text-danger "><strong>Actualy played in cinema:</strong></p>
+<hr>
 @foreach (var item in Model.Cinemas)
 {
     <p>@item.Name in city: @item.City</p>
     <p>@item.Street on day: @item.Date</p>
+    <hr>
 }
 
 <p>
